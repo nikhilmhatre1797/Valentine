@@ -115,13 +115,35 @@ function startHearts(){
 
 function toggleMode(){document.body.classList.toggle('dark')}
 
-const target=new Date(new Date().getFullYear(),1,14);
-setInterval(()=>{
- const diff=target-new Date();
- if(diff<=0){countdown.textContent='Today is our special day ❤️';return}
- const d=Math.floor(diff/(1000*60*60*24));
- countdown.textContent=d+' days until Valentine’s Day 💌';
-},1000);
+// Dynamic countdown logic
+const countdownEl = document.getElementById('countdown');
+
+function updateCountdown(){
+  const now = new Date();
+  const year = now.getFullYear();
+  const valentineDate = new Date(year, 1, 14); // Feb 14
+
+  // If already past Feb 14 this year, target next year
+  if(now > valentineDate){
+    valentineDate.setFullYear(year + 1);
+  }
+
+  const diff = valentineDate - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  if(days <= 0){
+    countdownEl.textContent = "Today is our Valentine ❤️";
+  } else {
+    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Valentine’s Day 💌`;
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
