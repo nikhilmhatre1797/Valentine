@@ -1,161 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Will You Be My Valentine? ❤️</title>
-  <meta name="description" content="A romantic interactive Valentine proposal" />
-  <style>
-    :root {
-      --bg1: #ff758c;
-      --bg2: #ff7eb3;
-      --card: #ffffff;
-      --text: #333;
-      --accent: #e63946;
-    }
-    body.dark {
-      --bg1: #1f1c2c;
-      --bg2: #928dab;
-      --card: #2b2b3c;
-      --text: #f5f5f5;
-      --accent: #ff4d6d;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      color: var(--text);
-      transition: background 0.6s ease;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 24px;
-      padding: 24px;
-      max-width: 420px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-      animation: fadeIn 1s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    h1 { color: var(--accent); margin-bottom: 8px; }
-    p { margin-bottom: 12px; }
-    .heart { font-size: 3.5rem; animation: pulse 1.2s infinite; }
-    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
-    .story { font-style: italic; margin-bottom: 12px; }
-    .timer { font-weight: bold; margin-bottom: 12px; }
-    .buttons { position: relative; height: 60px; margin-top: 10px; }
-    button {
-      padding: 12px 22px;
-      border-radius: 999px;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    #yesBtn { background: var(--accent); color: #fff; }
-    #noBtn { background: #ccc; position: absolute; left: 50%; transform: translateX(-50%); }
-    .video-container { display: none; margin-top: 16px; }
-    video { width: 100%; border-radius: 16px; }
-    .share a {
-      display: inline-block; margin: 6px; text-decoration: none;
-      background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 999px;
-    }
-    .toggle { position: fixed; top: 16px; right: 16px; cursor: pointer; }
-    .floating-heart {
-      position: fixed; bottom: -20px; font-size: 20px;
-      animation: floatUp 6s linear forwards;
-      opacity: 0.8;
-    }
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-110vh); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Valentine Week For Pranjali ❤️</title>
+<style>
+:root{
+  --bg1:#ff758c; --bg2:#ff7eb3; --card:#fff; --text:#333; --accent:#e63946;
+}
+body.dark{
+  --bg1:#1f1c2c; --bg2:#928dab; --card:#2b2b3c; --text:#f5f5f5; --accent:#ff4d6d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;color:var(--text);transition:.5s;
+}
+.card{
+  background:var(--card);
+  width:95%;max-width:500px;
+  padding:25px;border-radius:25px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  animation:fadeIn 1s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.heart{font-size:3rem;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+h1{color:var(--accent);margin:10px 0}
+p{margin:6px 0}
+.quote{font-style:italic;margin:10px 0}
+.timer{font-weight:bold;margin:10px 0}
+.buttons{position:relative;height:60px;margin-top:10px}
+button{padding:12px 22px;border-radius:999px;border:none;cursor:pointer;font-size:1rem}
+#yesBtn{background:var(--accent);color:#fff}
+#noBtn{background:#ccc;position:absolute;left:50%;transform:translateX(-50%)}
+.video-container{display:none;margin-top:15px}
+video{width:100%;border-radius:15px}
+.share a{display:inline-block;margin:5px;text-decoration:none;background:var(--accent);color:#fff;padding:8px 14px;border-radius:999px}
+.toggle{position:fixed;top:15px;right:15px;cursor:pointer;font-size:1.2rem}
+.floating-heart{position:fixed;bottom:-20px;font-size:20px;animation:floatUp 6s linear forwards}
+@keyframes floatUp{from{transform:translateY(0);opacity:1}to{transform:translateY(-110vh);opacity:0}}
+</style>
 </head>
 <body>
-  <div class="toggle" onclick="toggleMode()">🌓</div>
+<div class="toggle" onclick="toggleMode()">🌓</div>
 
-  <audio autoplay loop>
-    <source src="song.mp3" type="audio/mpeg" />
-  </audio>
+<audio autoplay loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
 
-  <main class="card">
-    <div class="heart">❤️</div>
-    <h1>Hey <span id="herName"></span>…</h1>
-    <p class="story">From the moment we met, every little thing felt brighter.</p>
-    <p class="story">Every laugh, every moment — I found my favorite place in you.</p>
+<main class="card">
+<div class="heart">❤️</div>
+<h1 id="dayTitle"></h1>
+<p id="message"></p>
+<p class="quote" id="quote1"></p>
+<p class="quote" id="quote2"></p>
+<div class="timer" id="countdown"></div>
 
-    <div class="timer" id="countdown"></div>
+<h2 id="question"></h2>
 
-    <h2>Will you be my Valentine? 💖</h2>
+<div class="buttons">
+<button id="yesBtn">Yes 💕</button>
+<button id="noBtn">No 🙈</button>
+</div>
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💕</button>
-      <button id="noBtn">No 🙈</button>
-    </div>
+<div class="video-container" id="videoBox">
+<h2>She said YES! 💘</h2>
+<video controls>
+<source src="love.mp4" type="video/mp4">
+</video>
+<div class="share">
+<a id="waShare" target="_blank">Share on WhatsApp</a>
+<a href="https://www.instagram.com/" target="_blank">Share on Instagram</a>
+</div>
+</div>
+</main>
 
-    <div class="video-container" id="videoBox">
-      <h2>She said YES! 💘</h2>
-      <video controls>
-        <source src="love.mp4" type="video/mp4" />
-      </video>
-      <div class="share">
-        <a id="waShare" target="_blank">Share on WhatsApp</a>
-        <a id="igShare" target="_blank">Share on Instagram</a>
-      </div>
-    </div>
-  </main>
+<script>
+const params=new URLSearchParams(window.location.search);
+const day=params.get('day')||'valentine';
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get('name') || 'My Love';
-    document.getElementById('herName').textContent = name;
+const content={
+rose:{title:'🌹 Happy Rose Day Pranjali 🌹',msg:'A rose for the most beautiful soul in my life.',q:'Will you accept this rose and my heart?',quotes:[
+'Every rose speaks of love silently.',
+'You are the bloom that colors my world.'
+]},
+propose:{title:'💍 Happy Propose Day Pranjali 💍',msg:'Today I gather all my courage.',q:'Will you be mine forever?',quotes:[
+'With you, forever sounds beautiful.',
+'My heart chose you long ago.'
+]},
+chocolate:{title:'🍫 Happy Chocolate Day Pranjali 🍫',msg:'Life with you is sweeter than chocolate.',q:'Will you share sweetness forever?',quotes:[
+'You melt my heart like chocolate.',
+'Sweet moments taste better with you.'
+]},
+teddy:{title:'🧸 Happy Teddy Day Pranjali 🧸',msg:'If I could hug you through the screen I would.',q:'Can I be your forever hug?',quotes:[
+'A teddy reminds you I am always near.',
+'My arms are your safest place.'
+]},
+promise:{title:'🤝 Happy Promise Day Pranjali 🤝',msg:'I promise to stand by you always.',q:'Shall we promise forever?',quotes:[
+'I promise love without conditions.',
+'Your smile is my lifelong commitment.'
+]},
+hug:{title:'🤗 Happy Hug Day Pranjali 🤗',msg:'Imagine this as the tightest hug.',q:'Can I hug you forever?',quotes:[
+'A hug speaks what words cannot.',
+'In your arms I find peace.'
+]},
+kiss:{title:'😘 Happy Kiss Day Pranjali 😘',msg:'A kiss filled with love and warmth.',q:'Can I steal a kiss for life?',quotes:[
+'One kiss can say a thousand words.',
+'Your love is my sweetest addiction.'
+]},
+valentine:{title:'❤️ Happy Valentine’s Day Pranjali ❤️',msg:'You are my today and all my tomorrows.',q:'Will you be my Valentine?',quotes:[
+'Every love story is special, ours is my favorite.',
+'With you, life feels magical.'
+]}
+};
 
-    const noBtn = document.getElementById('noBtn');
-    noBtn.addEventListener('mouseenter', move);
-    noBtn.addEventListener('click', move);
-    function move() {
-      noBtn.style.left = Math.random() * 80 + '%';
-    }
+const data=content[day];
+document.getElementById('dayTitle').textContent=data.title;
+document.getElementById('message').textContent=data.msg;
+document.getElementById('question').textContent=data.q;
+document.getElementById('quote1').textContent=data.quotes[0];
+document.getElementById('quote2').textContent=data.quotes[1];
 
-    document.getElementById('yesBtn').onclick = () => {
-      document.getElementById('videoBox').style.display = 'block';
-      document.getElementById('yesBtn').style.display = 'none';
-      noBtn.style.display = 'none';
-      startHearts();
-      const url = encodeURIComponent(window.location.href);
-      document.getElementById('waShare').href = `https://wa.me/?text=She%20said%20YES!%20💖%20${url}`;
-      document.getElementById('igShare').href = `https://www.instagram.com/`;
-    };
+const noBtn=document.getElementById('noBtn');
+noBtn.addEventListener('mouseenter',()=>{noBtn.style.left=Math.random()*80+'%'});
+noBtn.addEventListener('click',()=>{noBtn.style.left=Math.random()*80+'%'});
 
-    function startHearts() {
-      setInterval(() => {
-        const h = document.createElement('div');
-        h.className = 'floating-heart';
-        h.textContent = '❤️';
-        h.style.left = Math.random() * 100 + 'vw';
-        document.body.appendChild(h);
-        setTimeout(() => h.remove(), 6000);
-      }, 400);
-    }
+const yesBtn=document.getElementById('yesBtn');
+yesBtn.onclick=()=>{
+ document.getElementById('videoBox').style.display='block';
+ yesBtn.style.display='none';
+ noBtn.style.display='none';
+ startHearts();
+ const url=encodeURIComponent(window.location.href);
+ document.getElementById('waShare').href=`https://wa.me/?text=Pranjali%20said%20YES!%20💖%20${url}`;
+};
 
-    function toggleMode() { document.body.classList.toggle('dark'); }
+function startHearts(){
+ setInterval(()=>{
+   const h=document.createElement('div');
+   h.className='floating-heart';
+   h.textContent='❤️';
+   h.style.left=Math.random()*100+'vw';
+   document.body.appendChild(h);
+   setTimeout(()=>h.remove(),6000);
+ },400);
+}
 
-    const targetDate = new Date(new Date().getFullYear(), 1, 14);
-    setInterval(() => {
-      const diff = targetDate - new Date();
-      if (diff <= 0) return countdown.textContent = 'Today is our Valentine ❤️';
-      const d = Math.floor(diff / (1000*60*60*24));
-      countdown.textContent = `${d} days until Valentine’s Day 💌`;
-    }, 1000);
-  </script>
+function toggleMode(){document.body.classList.toggle('dark')}
+
+const target=new Date(new Date().getFullYear(),1,14);
+setInterval(()=>{
+ const diff=target-new Date();
+ if(diff<=0){countdown.textContent='Today is our special day ❤️';return}
+ const d=Math.floor(diff/(1000*60*60*24));
+ countdown.textContent=d+' days until Valentine’s Day 💌';
+},1000);
+</script>
 </body>
 </html>
