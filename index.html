@@ -5,34 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Valentine Week For Pranjali ❤️</title>
 <style>
-:root{
-  --bg1:#ff758c; --bg2:#ff7eb3; --card:#fff; --text:#333; --accent:#e63946;
-}
-body.dark{
-  --bg1:#1f1c2c; --bg2:#928dab; --card:#2b2b3c; --text:#f5f5f5; --accent:#ff4d6d;
-}
+:root{--bg1:#ff758c;--bg2:#ff7eb3;--card:#fff;--text:#333;--accent:#e63946}
+body.dark{--bg1:#1f1c2c;--bg2:#928dab;--card:#2b2b3c;--text:#f5f5f5;--accent:#ff4d6d}
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;color:var(--text);transition:.5s;
-}
-.card{
-  background:var(--card);
-  width:95%;max-width:500px;
-  padding:25px;border-radius:25px;
-  text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
-  animation:fadeIn 1s ease;
-}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--text);transition:.5s}
+.card{background:var(--card);width:95%;max-width:500px;padding:25px;border-radius:25px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25);animation:fadeIn 1s ease}
 @keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 .heart{font-size:3rem;animation:pulse 1.2s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 h1{color:var(--accent);margin:10px 0}
-p{margin:6px 0}
-.quote{font-style:italic;margin:10px 0}
+p{margin:8px 0}
+.quote{font-style:italic;margin:10px 0;font-size:1.05rem}
 .timer{font-weight:bold;margin:10px 0}
 .buttons{position:relative;height:60px;margin-top:10px}
 button{padding:12px 22px;border-radius:999px;border:none;cursor:pointer;font-size:1rem}
@@ -55,15 +38,14 @@ video{width:100%;border-radius:15px}
 
 <main class="card">
 <div class="heart">❤️</div>
-<h1 id="dayTitle"></h1>
-<p id="message"></p>
-<p class="quote" id="quote1"></p>
-<p class="quote" id="quote2"></p>
+<h1>My Lifeline Pranjali aka Shri Sakhi ❤️</h1>
+<h2 id="dayTitle"></h2>
+<p class="quote" id="mainQuote"></p>
 <div class="timer" id="countdown"></div>
 
 <h2 id="question"></h2>
 
-<div class="buttons">
+<div class="buttons" id="btnContainer">
 <button id="yesBtn">Yes 💕</button>
 <button id="noBtn">No 🙈</button>
 </div>
@@ -82,63 +64,43 @@ video{width:100%;border-radius:15px}
 
 <script>
 const params=new URLSearchParams(window.location.search);
-const day=params.get('day')||'valentine';
+const day=params.get('day')||'rose';
 
 const content={
-rose:{title:'🌹 Happy Rose Day Pranjali 🌹',msg:'A rose for the most beautiful soul in my life.',q:'Will you accept this rose and my heart?',quotes:[
-'Every rose speaks of love silently.',
-'You are the bloom that colors my world.'
-]},
-propose:{title:'💍 Happy Propose Day Pranjali 💍',msg:'Today I gather all my courage.',q:'Will you be mine forever?',quotes:[
-'With you, forever sounds beautiful.',
-'My heart chose you long ago.'
-]},
-chocolate:{title:'🍫 Happy Chocolate Day Pranjali 🍫',msg:'Life with you is sweeter than chocolate.',q:'Will you share sweetness forever?',quotes:[
-'You melt my heart like chocolate.',
-'Sweet moments taste better with you.'
-]},
-teddy:{title:'🧸 Happy Teddy Day Pranjali 🧸',msg:'If I could hug you through the screen I would.',q:'Can I be your forever hug?',quotes:[
-'A teddy reminds you I am always near.',
-'My arms are your safest place.'
-]},
-promise:{title:'🤝 Happy Promise Day Pranjali 🤝',msg:'I promise to stand by you always.',q:'Shall we promise forever?',quotes:[
-'I promise love without conditions.',
-'Your smile is my lifelong commitment.'
-]},
-hug:{title:'🤗 Happy Hug Day Pranjali 🤗',msg:'Imagine this as the tightest hug.',q:'Can I hug you forever?',quotes:[
-'A hug speaks what words cannot.',
-'In your arms I find peace.'
-]},
-kiss:{title:'😘 Happy Kiss Day Pranjali 😘',msg:'A kiss filled with love and warmth.',q:'Can I steal a kiss for life?',quotes:[
-'One kiss can say a thousand words.',
-'Your love is my sweetest addiction.'
-]},
-valentine:{title:'❤️ Happy Valentine’s Day Pranjali ❤️',msg:'You are my today and all my tomorrows.',q:'Will you be my Valentine?',quotes:[
-'Every love story is special, ours is my favorite.',
-'With you, life feels magical.'
-]}
+rose:{title:'🌹 Happy Rose Day 🌹',quote:'Like a rose blooming with grace, Pranjali, your presence fills my life with fragrance, color, and quiet strength.'},
+propose:{title:'💍 Happy Propose Day 💍',quote:'If love had a destination, it would spell your name — Pranjali, the forever my heart chose without hesitation.'},
+chocolate:{title:'🍫 Happy Chocolate Day 🍫',quote:'Even the sweetest chocolate envies the sweetness of your smile, Pranjali — you are my favorite indulgence.'},
+teddy:{title:'🧸 Happy Teddy Day 🧸',quote:'If comfort had a face, it would look like you, Pranjali — my soft place to land in this loud world.'},
+promise:{title:'🤝 Happy Promise Day 🤝',quote:'With every sunrise, I promise to choose you again, Pranjali — not just today, but in every lifetime.'},
+hug:{title:'🤗 Happy Hug Day 🤗',quote:'A hug from you feels like home, Pranjali — warm, safe, and exactly where I belong.'},
+kiss:{title:'😘 Happy Kiss Day 😘',quote:'If moments could pause, I would freeze every kiss with you, Pranjali — where time forgets to move.'},
+valentine:{title:'❤️ Happy Valentine’s Day ❤️',quote:'Every love story is special, but ours feels written by destiny itself.'}
 };
 
 const data=content[day];
 document.getElementById('dayTitle').textContent=data.title;
-document.getElementById('message').textContent=data.msg;
-document.getElementById('question').textContent=data.q;
-document.getElementById('quote1').textContent=data.quotes[0];
-document.getElementById('quote2').textContent=data.quotes[1];
+document.getElementById('mainQuote').textContent=data.quote;
+
+if(day==='valentine'){
+ document.getElementById('question').textContent='Will you be my Valentine? 💖';
+}else{
+ document.getElementById('question').style.display='none';
+ document.getElementById('btnContainer').style.display='none';
+}
 
 const noBtn=document.getElementById('noBtn');
-noBtn.addEventListener('mouseenter',()=>{noBtn.style.left=Math.random()*80+'%'});
-noBtn.addEventListener('click',()=>{noBtn.style.left=Math.random()*80+'%'});
+noBtn?.addEventListener('mouseenter',()=>{noBtn.style.left=Math.random()*80+'%'});
+noBtn?.addEventListener('click',()=>{noBtn.style.left=Math.random()*80+'%'});
 
 const yesBtn=document.getElementById('yesBtn');
-yesBtn.onclick=()=>{
+yesBtn?.addEventListener('click',()=>{
  document.getElementById('videoBox').style.display='block';
  yesBtn.style.display='none';
  noBtn.style.display='none';
  startHearts();
  const url=encodeURIComponent(window.location.href);
  document.getElementById('waShare').href=`https://wa.me/?text=Pranjali%20said%20YES!%20💖%20${url}`;
-};
+});
 
 function startHearts(){
  setInterval(()=>{
