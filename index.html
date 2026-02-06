@@ -5,18 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Valentine Week For Pranjali ❤️</title>
 <style>
-:root{--bg1:#ff758c;--bg2:#ff7eb3;--card:#fff;--text:#333;--accent:#e63946}
-body.dark{--bg1:#1f1c2c;--bg2:#928dab;--card:#2b2b3c;--text:#f5f5f5;--accent:#ff4d6d}
+:root{
+  --card:#fff;--text:#333;--accent:#e63946;
+}
+body.dark{--card:#2b2b3c;--text:#f5f5f5;--accent:#ff4d6d}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--text);transition:.5s}
-.card{background:var(--card);width:95%;max-width:500px;padding:25px;border-radius:25px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25);animation:fadeIn 1s ease}
+body{
+  font-family:'Segoe UI',sans-serif;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;color:var(--text);
+  transition:.6s ease;
+  background-size:cover;
+  background-position:center;
+}
+.card{
+  background:var(--card);
+  width:95%;max-width:520px;
+  padding:28px;border-radius:25px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  backdrop-filter:blur(10px);
+  animation:fadeIn 1s ease
+}
 @keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 .heart{font-size:3rem;animation:pulse 1.2s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 h1{color:var(--accent);margin:10px 0}
 p{margin:8px 0}
-.quote{font-style:italic;margin:10px 0;font-size:1.05rem}
-.timer{font-weight:bold;margin:10px 0}
+.quote{font-style:italic;margin:14px 0;font-size:1.08rem;line-height:1.6}
+.timer{font-weight:bold;margin:12px 0}
 .buttons{position:relative;height:60px;margin-top:10px}
 button{padding:12px 22px;border-radius:999px;border:none;cursor:pointer;font-size:1rem}
 #yesBtn{background:var(--accent);color:#fff}
@@ -24,7 +42,7 @@ button{padding:12px 22px;border-radius:999px;border:none;cursor:pointer;font-siz
 .video-container{display:none;margin-top:15px}
 video{width:100%;border-radius:15px}
 .share a{display:inline-block;margin:5px;text-decoration:none;background:var(--accent);color:#fff;padding:8px 14px;border-radius:999px}
-.toggle{position:fixed;top:15px;right:15px;cursor:pointer;font-size:1.2rem}
+.toggle{position:fixed;top:15px;right:15px;cursor:pointer;font-size:1.2rem;color:white}
 .floating-heart{position:fixed;bottom:-20px;font-size:20px;animation:floatUp 6s linear forwards}
 @keyframes floatUp{from{transform:translateY(0);opacity:1}to{transform:translateY(-110vh);opacity:0}}
 </style>
@@ -32,24 +50,17 @@ video{width:100%;border-radius:15px}
 <body>
 <div class="toggle" onclick="toggleMode()">🌓</div>
 
-<audio autoplay loop>
-<source src="song.mp3" type="audio/mpeg">
-</audio>
-
 <main class="card">
 <div class="heart">❤️</div>
 <h1>My Lifeline Pranjali aka Shri Sakhi ❤️</h1>
 <h2 id="dayTitle"></h2>
 <p class="quote" id="mainQuote"></p>
 <div class="timer" id="countdown"></div>
-
 <h2 id="question"></h2>
-
 <div class="buttons" id="btnContainer">
 <button id="yesBtn">Yes 💕</button>
 <button id="noBtn">No 🙈</button>
 </div>
-
 <div class="video-container" id="videoBox">
 <h2>She said YES! 💘</h2>
 <video controls>
@@ -66,19 +77,20 @@ video{width:100%;border-radius:15px}
 const params=new URLSearchParams(window.location.search);
 const day=params.get('day')||'rose';
 
-const content={
-rose:{title:'🌹 Happy Rose Day 🌹',quote:'Like a rose blooming with grace, Pranjali, your presence fills my life with fragrance, color, and quiet strength.'},
-propose:{title:'💍 Happy Propose Day 💍',quote:'If love had a destination, it would spell your name — Pranjali, the forever my heart chose without hesitation.'},
-chocolate:{title:'🍫 Happy Chocolate Day 🍫',quote:'Even the sweetest chocolate envies the sweetness of your smile, Pranjali — you are my favorite indulgence.'},
-teddy:{title:'🧸 Happy Teddy Day 🧸',quote:'If comfort had a face, it would look like you, Pranjali — my soft place to land in this loud world.'},
-promise:{title:'🤝 Happy Promise Day 🤝',quote:'With every sunrise, I promise to choose you again, Pranjali — not just today, but in every lifetime.'},
-hug:{title:'🤗 Happy Hug Day 🤗',quote:'A hug from you feels like home, Pranjali — warm, safe, and exactly where I belong.'},
-kiss:{title:'😘 Happy Kiss Day 😘',quote:'If moments could pause, I would freeze every kiss with you, Pranjali — where time forgets to move.'},
-valentine:{title:'❤️ Happy Valentine’s Day ❤️',quote:'Every love story is special, but ours feels written by destiny itself.'}
+const themes={
+rose:{bg:"linear-gradient(135deg,#ff9a9e,#fecfef)",quote:"Like a rose blooming with grace, Pranjali, your presence fills my life with fragrance, color, and quiet strength."},
+propose:{bg:"linear-gradient(135deg,#fbc2eb,#a6c1ee)",quote:"If love had a destination, it would spell your name — Pranjali, the forever my heart chose without hesitation."},
+chocolate:{bg:"linear-gradient(135deg,#d1913c,#ffd194)",quote:"Even the sweetest chocolate envies the sweetness of your smile, Pranjali — you are my favorite indulgence."},
+teddy:{bg:"linear-gradient(135deg,#fddb92,#d1fdff)",quote:"If comfort had a face, it would look like you, Pranjali — my soft place to land in this loud world."},
+promise:{bg:"linear-gradient(135deg,#84fab0,#8fd3f4)",quote:"With every sunrise, I promise to choose you again, Pranjali — not just today, but in every lifetime."},
+hug:{bg:"linear-gradient(135deg,#ffecd2,#fcb69f)",quote:"A hug from you feels like home, Pranjali — warm, safe, and exactly where I belong."},
+kiss:{bg:"linear-gradient(135deg,#ff758c,#ff7eb3)",quote:"If moments could pause, I would freeze every kiss with you, Pranjali — where time forgets to move."},
+valentine:{bg:"linear-gradient(135deg,#ff0844,#ffb199)",quote:"Every love story is special, but ours feels written by destiny itself."}
 };
 
-const data=content[day];
-document.getElementById('dayTitle').textContent=data.title;
+const data=themes[day];
+document.body.style.background=data.bg;
+document.getElementById('dayTitle').textContent="Happy "+day.charAt(0).toUpperCase()+day.slice(1)+" Day ❤️";
 document.getElementById('mainQuote').textContent=data.quote;
 
 if(day==='valentine'){
@@ -90,7 +102,6 @@ if(day==='valentine'){
 
 const noBtn=document.getElementById('noBtn');
 noBtn?.addEventListener('mouseenter',()=>{noBtn.style.left=Math.random()*80+'%'});
-noBtn?.addEventListener('click',()=>{noBtn.style.left=Math.random()*80+'%'});
 
 const yesBtn=document.getElementById('yesBtn');
 yesBtn?.addEventListener('click',()=>{
@@ -115,35 +126,22 @@ function startHearts(){
 
 function toggleMode(){document.body.classList.toggle('dark')}
 
-// Dynamic countdown logic
-const countdownEl = document.getElementById('countdown');
-
+const countdownEl=document.getElementById('countdown');
 function updateCountdown(){
-  const now = new Date();
-  const year = now.getFullYear();
-  const valentineDate = new Date(year, 1, 14); // Feb 14
-
-  // If already past Feb 14 this year, target next year
-  if(now > valentineDate){
-    valentineDate.setFullYear(year + 1);
-  }
-
-  const diff = valentineDate - now;
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  if(days <= 0){
-    countdownEl.textContent = "Today is our Valentine ❤️";
-  } else {
-    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Valentine’s Day 💌`;
-  }
+ const now=new Date();
+ const year=now.getFullYear();
+ let valentineDate=new Date(year,1,14);
+ if(now>valentineDate){valentineDate.setFullYear(year+1)}
+ const diff=valentineDate-now;
+ const days=Math.floor(diff/(1000*60*60*24));
+ const hours=Math.floor((diff/(1000*60*60))%24);
+ const minutes=Math.floor((diff/(1000*60))%60);
+ const seconds=Math.floor((diff/1000)%60);
+ if(days<=0){countdownEl.textContent="Today is our Valentine ❤️"}
+ else{countdownEl.textContent=`${days}d ${hours}h ${minutes}m ${seconds}s until Valentine’s Day 💌`}
 }
-
 updateCountdown();
-setInterval(updateCountdown, 1000);
+setInterval(updateCountdown,1000);
 </script>
 </body>
 </html>
